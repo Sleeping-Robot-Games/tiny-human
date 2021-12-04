@@ -25,5 +25,5 @@ void fragment()
 
 [resource]
 shader = SubResource( 1 )
-shader_param/palette_swap = ExtResource( 1 )
-shader_param/greyscale_palette = ExtResource( 2 )
+shader_param/palette_swap = ExtResource( 2 )
+shader_param/greyscale_palette = ExtResource( 1 )

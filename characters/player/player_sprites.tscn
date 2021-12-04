@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://characters/player/sprites/body/body_001.png" type="Texture" id=1]
 [ext_resource path="res://characters/player/sprites/arms/arms_001.png" type="Texture" id=2]
@@ -11,6 +11,33 @@
 [ext_resource path="res://characters/player/sprites/hair/hairb_001.png" type="Texture" id=9]
 [ext_resource path="res://characters/player/sprites/head/head_001.png" type="Texture" id=10]
 [ext_resource path="res://characters/player/sprites/top/top_001.png" type="Texture" id=11]
+[ext_resource path="res://characters/player/palettes/hair/haircolor_000.png" type="Texture" id=12]
+[ext_resource path="res://characters/player/palettes/hair/haircolor_001.png" type="Texture" id=13]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform sampler2D palette_swap : hint_albedo;
+uniform sampler2D greyscale_palette : hint_albedo;
+
+void fragment()
+{
+	vec4 old_color = texture(TEXTURE, UV);
+	vec2 swap_coord = vec2 ( old_color.r, 0);
+	vec4 new_color = texture(palette_swap, swap_coord);
+	if (old_color == texture(greyscale_palette, swap_coord)){
+		new_color.a *= old_color.a;
+		COLOR = new_color;
+	} else {
+		COLOR = old_color;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=43]
+shader = SubResource( 1 )
+shader_param/palette_swap = ExtResource( 13 )
+shader_param/greyscale_palette = ExtResource( 12 )
 
 [sub_resource type="Animation" id=22]
 length = 0.001
@@ -2516,7 +2543,7 @@ hframes = 8
 vframes = 9
 
 [node name="Bottom" type="Sprite" parent="."]
-material = ExtResource( 8 )
+material = SubResource( 43 )
 texture = ExtResource( 7 )
 hframes = 8
 vframes = 9
