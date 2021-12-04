@@ -1,6 +1,29 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://characters/player/palettes/hair/haircolor_000.png" type="Texture" id=1]
+[ext_resource path="res://characters/player/palettes/hair/haircolor_001.png" type="Texture" id=2]
 
 [sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+uniform sampler2D palette_swap : hint_albedo;
+uniform sampler2D greyscale_palette : hint_albedo;
+
+void fragment()
+{
+	vec4 old_color = texture(TEXTURE, UV);
+	vec2 swap_coord = vec2 ( old_color.r, 0);
+	vec4 new_color = texture(palette_swap, swap_coord);
+	if (old_color == texture(greyscale_palette, swap_coord)){
+		new_color.a *= old_color.a;
+		COLOR = new_color;
+	} else {
+		COLOR = old_color;
+	}
+}"
 
 [resource]
 shader = SubResource( 1 )
+shader_param/palette_swap = ExtResource( 1 )
+shader_param/greyscale_palette = ExtResource( 2 )
