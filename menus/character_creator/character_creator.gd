@@ -20,7 +20,7 @@ onready var palette_sprite_dict: Dictionary = {
 		player_sprite['Body'],
 		player_sprite['Arms'],
 		player_sprite['Head'],
-		player_sprite['Face']
+		# player_sprite['Face'] ## Will go under accessory
 	],
 	'hair': [
 		player_sprite['HairA'],
@@ -29,8 +29,7 @@ onready var palette_sprite_dict: Dictionary = {
 	'top': [player_sprite['Top']],
 }
 
-var pallete_sprite_state: Dictionary
-
+var pallete_sprite_state: Dictionary # Gets set in create_random_character()
 
 var player_name: String
 
