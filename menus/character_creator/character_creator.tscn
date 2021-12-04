@@ -212,3 +212,15 @@ text = "Done"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Randomize" type="Button" parent="."]
+margin_left = 192.0
+margin_top = 210.0
+margin_right = 275.0
+margin_bottom = 230.0
+text = "Randomize"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_up" from="Randomize" to="." method="_on_Randomize_button_up"]

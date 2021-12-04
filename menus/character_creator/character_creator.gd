@@ -129,3 +129,7 @@ func _on_Color_Selection_button_up(palette_sprite: String, direction: int):
 		var color_num = str(new_color).pad_zeros(3)
 		set_sprite_color(palette_sprite, sprite, color_num)
 		pallete_sprite_state[palette_sprite] = color_num
+
+
+func _on_Randomize_button_up():
+	create_random_character()
