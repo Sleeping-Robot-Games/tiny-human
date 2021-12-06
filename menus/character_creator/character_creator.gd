@@ -1,6 +1,7 @@
 extends Control
 
 onready var player_sprite: Dictionary = {
+	'HatB': $PlayerSprites/HatB,
 	'HairB': $PlayerSprites/HairB,
 	'Body': $PlayerSprites/Body,
 	'Bottom': $PlayerSprites/Bottom,
@@ -10,7 +11,7 @@ onready var player_sprite: Dictionary = {
 	'Eyes': $PlayerSprites/Eyes,
 	'HairA': $PlayerSprites/HairA,
 	'Face': $PlayerSprites/Face,
-	'Hat': $PlayerSprites/Hat
+	'HatA': $PlayerSprites/HatA
 }
 
 onready var palette_sprite_dict: Dictionary = {
