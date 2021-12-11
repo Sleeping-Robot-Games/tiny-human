@@ -1,7 +1,6 @@
 extends Control
 
 onready var player_sprite: Dictionary = {
-	'HatB': $PlayerSprites/HatB,
 	'HairB': $PlayerSprites/HairB,
 	'Body': $PlayerSprites/Body,
 	'Bottom': $PlayerSprites/Bottom,
@@ -10,8 +9,7 @@ onready var player_sprite: Dictionary = {
 	'Head': $PlayerSprites/Head,
 	'Eyes': $PlayerSprites/Eyes,
 	'HairA': $PlayerSprites/HairA,
-	'Face': $PlayerSprites/Face,
-	'HatA': $PlayerSprites/HatA
+	'Face': $PlayerSprites/Face
 }
 
 onready var palette_sprite_dict: Dictionary = {
@@ -31,36 +29,87 @@ onready var palette_sprite_dict: Dictionary = {
 }
 
 var pallete_sprite_state: Dictionary # Gets set in create_random_character()
-
 var player_name: String
-
 var palette_folder_path = "res://characters/player/palettes"
 
 func _ready():
-	### Button signals ###
-	## Skin Color Buttons
-	$ColorContainer/SkinContainer/Left.connect('button_up', self, '_on_Color_Selection_button_up', ['skin', -1])
-	$ColorContainer/SkinContainer/Right.connect('button_up', self, '_on_Color_Selection_button_up', ['skin', 1])
-	## Eyes Color Buttons
-	$ColorContainer/EyesContainer/Left.connect('button_up', self, '_on_Color_Selection_button_up', ['eyes', -1])
-	$ColorContainer/EyesContainer/Right.connect('button_up', self, '_on_Color_Selection_button_up', ['eyes', 1])
-	## Hair A Color Buttons
-	$ColorContainer/HairAContainer/Left.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', -1])
-	$ColorContainer/HairAContainer/Right.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', 1])
-	## Hair B Color Buttons
-	$ColorContainer/HairBContainer/Left.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', -1])
-	$ColorContainer/HairBContainer/Right.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', 1])
-	## Top Color Buttons
-	$ColorContainer/TopContainer/Left.connect('button_up', self, '_on_Color_Selection_button_up', ['top', -1])
-	$ColorContainer/TopContainer/Right.connect('button_up', self, '_on_Color_Selection_button_up', ['top', 1])
-	## Bottom Color Buttons
-	$ColorContainer/BottomContainer/Left.connect('button_up', self, '_on_Color_Selection_button_up', ['bottom', -1])
-	$ColorContainer/BottomContainer/Right.connect('button_up', self, '_on_Color_Selection_button_up', ['bottom', 1])
-	
+	connect_button_signals()
+	populate_color_boxes()
 	create_random_character()
-	
 	$PlayerSprites/AnimationPlayer.play("idle_right")
-	
+
+func connect_button_signals() -> void:
+	# warning-ignore-all:return_value_discarded
+	## Skin Color Buttons
+	$ColorContainer/SkinContainer/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['skin', -1])
+	$ColorContainer/SkinContainer/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['skin', 1])
+	## Eyes Color Buttons
+	$ColorContainer/EyesContainer/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['eyes', -1])
+	$ColorContainer/EyesContainer/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['eyes', 1])
+	## Hair A Color Buttons
+	$ColorContainer/HairAContainer/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', -1])
+	$ColorContainer/HairAContainer/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', 1])
+	## Hair B Color Buttons
+	$ColorContainer/HairBContainer/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', -1])
+	$ColorContainer/HairBContainer/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', 1])
+	## Top Color Buttons
+	$ColorContainer/TopContainer/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['top', -1])
+	$ColorContainer/TopContainer/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['top', 1])
+	## Bottom Color Buttons
+	$ColorContainer/BottomContainer/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['bottom', -1])
+	$ColorContainer/BottomContainer/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['bottom', 1])
+
+
+func populate_color_boxes() -> void:
+	## Skin Color Boxes
+	var palette_folders = files_in_dir(palette_folder_path)
+	for folder in palette_folders:
+		create_palette_colors(folder)
+
+func create_palette_colors(palette_type: String) -> void:
+	var folder_path = "res://characters/player/palettes/"+palette_type
+	var files = files_in_dir(folder_path)
+	files.sort()
+	for file in files:
+		var palette_num = file.substr(len(file)-7, 3)
+		if palette_num == "000":
+			continue
+		var palette_path = folder_path+"/"+file
+		var button_image = "res://menus/character_creator/color_button.png"
+		
+		# Get pixel color from palette for button
+		var palette = load(palette_path)
+		var palette_data = palette.get_data()
+		palette_data.lock()
+		# TODO: either use set pixel from start, palette_width to get nth pixel from end, or use a hard-coded dictionary
+		var palette_width = palette_data.get_width()
+		var button_color = palette_data.get_pixel(0, 0)
+		palette_data.unlock()
+		
+		# Create color button
+		var button = TextureButton.new()
+		button.set_expand(true)
+		button.set_stretch_mode(TextureButton.STRETCH_SCALE)
+		button.texture_normal = load(button_image)
+		button.rect_min_size = Vector2(5, 5)
+		button.modulate = button_color
+		button.connect("button_up", self, "_on_Color_Box_button_up", [palette_type, palette_num])
+		
+		# Add button to scene
+		if palette_type == "skin":
+			$ColorBoxes/Skin/Boxes.add_child(button)
+		elif palette_type == "eyes":
+			$ColorBoxes/Eyes/Boxes.add_child(button)
+		elif palette_type == "hair":
+			$ColorBoxes/HairA/Boxes.add_child(button)
+			# TODO: fix HairB
+			var buttonB = button.duplicate()
+			$ColorBoxes/HairB/Boxes.add_child(buttonB)
+		elif palette_type == "top":
+			$ColorBoxes/Top/Boxes.add_child(button)
+		elif palette_type == "bottom":
+			$ColorBoxes/Bottom/Boxes.add_child(button)
+
 func create_random_character() -> void:
 	var palette_folders = files_in_dir(palette_folder_path)
 	for folder in palette_folders:
@@ -131,6 +180,10 @@ func _on_Color_Selection_button_up(palette_sprite: String, direction: int):
 		set_sprite_color(palette_sprite, sprite, color_num)
 		pallete_sprite_state[palette_sprite] = color_num
 
+func _on_Color_Box_button_up(palette_type: String, palette_num: String):
+	for sprite in palette_sprite_dict[palette_type]:
+		set_sprite_color(palette_type, sprite, palette_num)
+		pallete_sprite_state[palette_type] = palette_num
 
 func _on_Randomize_button_up():
 	create_random_character()
