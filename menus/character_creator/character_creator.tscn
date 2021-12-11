@@ -31,8 +31,8 @@ __meta__ = {
 
 [node name="Blue" type="TextureRect" parent="NinePatchRect"]
 show_behind_parent = true
-margin_right = 400.0
-margin_bottom = 240.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -46,7 +46,7 @@ texture = ExtResource( 1 )
 [node name="Black" type="ColorRect" parent="NinePatchRect"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.392157 )
+color = Color( 0, 0, 0, 0.27451 )
 
 [node name="PlayerSprites" parent="." instance=ExtResource( 2 )]
 position = Vector2( 85, 98 )
