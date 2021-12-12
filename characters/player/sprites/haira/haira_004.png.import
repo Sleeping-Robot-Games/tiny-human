@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hata_001.png-8c37620eba317657f24660dbe3e79225.stex"
+path="res://.import/haira_004.png-267ac23c9b42c44fcb756dc0c0c6b736.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/player/sprites/hat/hata_001.png"
-dest_files=[ "res://.import/hata_001.png-8c37620eba317657f24660dbe3e79225.stex" ]
+source_file="res://characters/player/sprites/haira/haira_004.png"
+dest_files=[ "res://.import/haira_004.png-267ac23c9b42c44fcb756dc0c0c6b736.stex" ]
 
 [params]
 

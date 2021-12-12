@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hairb_001.png-d8ced013970413a7c55436cb166528f6.stex"
+path="res://.import/haira_002.png-fe01f073ed6fdc5a86adc06983ac3dfe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/player/sprites/hair/hairb_001.png"
-dest_files=[ "res://.import/hairb_001.png-d8ced013970413a7c55436cb166528f6.stex" ]
+source_file="res://characters/player/sprites/haira/haira_002.png"
+dest_files=[ "res://.import/haira_002.png-fe01f073ed6fdc5a86adc06983ac3dfe.stex" ]
 
 [params]
 

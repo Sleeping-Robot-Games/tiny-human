@@ -21,12 +21,12 @@ onready var palette_sprite_dict: Dictionary = {
 		player_sprite['Body'],
 		player_sprite['Arms'],
 		player_sprite['Head'],
-		# player_sprite['Face'] ## Will go under accessory
 	],
 	'hair': [
 		player_sprite['HairA'],
 		player_sprite['HairB']
 	],
+	'face': [player_sprite['Face']],
 	'top': [player_sprite['Top']],
 }
 
@@ -45,26 +45,26 @@ func _ready():
 func connect_sprite_buttons() -> void:
 	# warning-ignore-all:return_value_discarded
 	## Eyes Color Buttons
-	$Selectors/VBox/Eyes/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['eyes', -1])
-	$Selectors/VBox/Eyes/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['eyes', 1])
+	$Selectors/VBox/Eyes/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['eyes', "Eyes", -1])
+	$Selectors/VBox/Eyes/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['eyes', "Eyes", 1])
 	## Hair A Color Buttons
-	$Selectors/VBox/HairA/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['hair', -1])
-	$Selectors/VBox/HairA/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['hair', 1])
+	$Selectors/VBox/HairA/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['haira', "HairA", -1])
+	$Selectors/VBox/HairA/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['haira', "HairA", 1])
 	## Hair B Color Buttons
-	$Selectors/VBox/HairB/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['hair', -1])
-	$Selectors/VBox/HairB/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['hair', 1])
+	$Selectors/VBox/HairB/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['hairb', "HairB", -1])
+	$Selectors/VBox/HairB/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['hairb', "HairB", 1])
 	## Top Color Buttons
-	$Selectors/VBox/Top/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['top', -1])
-	$Selectors/VBox/Top/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['top', 1])
+	$Selectors/VBox/Top/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['top', "Top", -1])
+	$Selectors/VBox/Top/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['top', "Top", 1])
 	## Bottom Color Buttons
-	$Selectors/VBox/Bottom/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['bottom', -1])
-	$Selectors/VBox/Bottom/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['bottom', 1])
+	$Selectors/VBox/Bottom/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['bottom', "Bottom", -1])
+	$Selectors/VBox/Bottom/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['bottom', "Bottom", 1])
 	## Hat Color Buttons
-	$Selectors/VBox/Hat/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['hat', -1])
-	$Selectors/VBox/Hat/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['hat', 1])
+	$Selectors/VBox/Hat/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['hat', "HatA", -1])
+	$Selectors/VBox/Hat/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['hat', "HatA", 1])
 	## Accessory Color Buttons
-	$Selectors/VBox/Acc/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['accessory', -1])
-	$Selectors/VBox/Acc/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['accessory', 1])
+	$Selectors/VBox/Acc/Prev.connect('button_up', self, '_on_Sprite_Selection_button_up', ['face', "Face", -1])
+	$Selectors/VBox/Acc/Next.connect('button_up', self, '_on_Sprite_Selection_button_up', ['face', "Face", 1])
 
 func populate_color_boxes() -> void:
 	## Skin Color Boxes
@@ -172,10 +172,7 @@ func set_random_sprite(sprite_type: String) -> void:
 	set_player_sprite(node, sprite_num)
 
 func set_player_sprite(node: String, sprite_num: String) -> void:
-	var node_folder = node.to_lower()
-	var last_char = node_folder.substr(len(node_folder) - 1)
-	if last_char == "a" or last_char == "b":
-		node_folder = node_folder.substr(0, len(node_folder) - 1)
+	var node_folder = "hat" if node == "HatA" else node.to_lower()
 	var sprite_path = "res://characters/player/sprites/{folder}/{node}_{number}.png".format({
 		"folder": node_folder,
 		"node": node.to_lower(),
@@ -184,16 +181,12 @@ func set_player_sprite(node: String, sprite_num: String) -> void:
 	player_sprite[node].texture = load(sprite_path)
 	sprite_state[node] = sprite_num
 	
-	if node == "HatA" or node == "HatB":
-		var counterpart_node = "HatA" if node == "HatB" else "HatB"
-		var counterpart_file = counterpart_node.to_lower()+"_"+sprite_num+".png"
-		var counterpart_path = "res://characters/player/sprites/{folder}/{node}_{number}.png".format({
-			"folder": node_folder,
-			"node": counterpart_node.to_lower(),
-			"number": sprite_num
-		})
-		var files = files_in_dir(sprite_folder_path+"/"+node_folder, sprite_num)
-		# if hat doesn't have counterpart sprite, it will remain unset and flagged as "000"
+	if node == "HatA":
+		var counterpart_node = "HatB"
+		var counterpart_file = "hatb_"+sprite_num+".png"
+		var counterpart_path = "res://characters/player/sprites/hat/"+counterpart_file
+		var files = files_in_dir(sprite_folder_path+"/hat", sprite_num)
+		# if HatA doesn't have counterpart sprite, HatB will remain unset and flagged as "000"
 		player_sprite[counterpart_node].texture = null
 		sprite_state[counterpart_node] = "000"
 		for file in files:
@@ -233,10 +226,16 @@ func _on_Color_Selection_button_up(palette_sprite: String, direction: int):
 		set_sprite_color(palette_sprite, sprite, color_num)
 		pallete_state[palette_sprite] = color_num
 
-func _on_Sprite_Selection_button_up(sprite_type: String, direction: int):
-	var folder_path = "res://characters/player/sprites/"+sprite_type
-	var files = files_in_dir(folder_path)
-	var new_sprite = int()
+func _on_Sprite_Selection_button_up(sprite_folder: String, sprite_node: String, direction: int):
+	var folder_path = "res://characters/player/sprites/"+sprite_folder
+	var files = files_in_dir(folder_path, sprite_node.to_lower())
+	var new_sprite = int(sprite_state[sprite_node]) + direction
+	if direction == -1 and new_sprite == 0:
+		new_sprite = len(files)
+	elif direction == 1 and new_sprite == len(files) + 1:
+		new_sprite = 1
+	var sprite_num = str(new_sprite).pad_zeros(3)
+	set_player_sprite(sprite_node, sprite_num)
 
 func _on_Color_Box_button_up(palette_type: String, palette_num: String):
 	for sprite in palette_sprite_dict[palette_type]:
