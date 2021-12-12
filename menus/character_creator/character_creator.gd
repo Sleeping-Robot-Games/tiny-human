@@ -103,9 +103,6 @@ func create_palette_colors(palette_type: String) -> void:
 			$Selectors/VBox/Eyes/Colors.add_child(button)
 		elif palette_type == "hair":
 			$Selectors/VBox/HairA/Colors.add_child(button)
-			# TODO: fix HairB
-			var buttonB = button.duplicate()
-			$Selectors/VBox/HairB/Colors.add_child(buttonB)
 		elif palette_type == "top":
 			$Selectors/VBox/Top/Colors.add_child(button)
 		elif palette_type == "bottom":
