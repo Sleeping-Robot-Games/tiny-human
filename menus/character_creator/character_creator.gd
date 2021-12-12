@@ -165,6 +165,8 @@ func random_asset(folder: String, keyword: String = "") -> String:
 
 func set_random_sprite(sprite_type: String) -> void:
 	var random_sprite = random_asset(sprite_folder_path+"/"+sprite_type)
+	if "/hatb_" in random_sprite:
+		random_sprite = random_sprite.replace("/hatb_", "/hata_")
 	var file_start = random_sprite.rfind("/") + 1
 	var file = random_sprite.substr(file_start)
 	var node = get_node_from_sprite(file)
