@@ -82,9 +82,8 @@ func create_palette_colors(palette_type: String) -> void:
 		var palette = load(palette_path)
 		var palette_data = palette.get_data()
 		palette_data.lock()
-		# TODO: either use set pixel from start, palette_width to get nth pixel from end, or use a hard-coded dictionary
-		var palette_width = palette_data.get_width()
-		var button_color = palette_data.get_pixel(0, 0)
+		var pixel_x = 3 if palette_type == "eyes" else 2
+		var button_color = palette_data.get_pixel(pixel_x, 0)
 		palette_data.unlock()
 		
 		# Create color button
