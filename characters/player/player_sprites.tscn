@@ -2571,7 +2571,7 @@ tracks/10/keys = {
 "values": [ 40, 41 ]
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=42]
 resource_name = "wall_slide_left"
 length = 0.3
 tracks/0/type = "value"
@@ -2584,7 +2584,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 32, 33, 34 ]
+"values": [ 37, 38, 39 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Head:frame")
@@ -2596,7 +2596,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 32, 33, 34 ]
+"values": [ 37, 38, 39 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Arms:frame")
@@ -2608,7 +2608,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 32, 33, 34 ]
+"values": [ 37, 38, 39 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Bottom:frame")
@@ -2620,7 +2620,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 32, 33, 34 ]
+"values": [ 37, 38, 39 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Top:frame")
@@ -2632,7 +2632,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 32, 33, 34 ]
+"values": [ 37, 38, 39 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Eyes:frame")
@@ -2644,7 +2644,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 32, 33, 34 ]
+"values": [ 37, 38, 39 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("HairA:frame")
@@ -2656,7 +2656,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 32, 33, 34 ]
+"values": [ 37, 38, 39 ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("Face:frame")
@@ -2668,7 +2668,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 32, 33, 34 ]
+"values": [ 37, 38, 39 ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("HatA:frame")
@@ -2680,7 +2680,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 32, 33, 34 ]
+"values": [ 37, 38, 39 ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("HairB:frame")
@@ -2692,7 +2692,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 32, 33, 34 ]
+"values": [ 37, 38, 39 ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("HatB:frame")
@@ -2704,10 +2704,10 @@ tracks/10/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 32, 33, 34 ]
+"values": [ 37, 38, 39 ]
 }
 
-[sub_resource type="Animation" id=42]
+[sub_resource type="Animation" id=32]
 resource_name = "wall_slide_right"
 length = 0.3
 tracks/0/type = "value"
@@ -2720,7 +2720,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 37, 38, 39 ]
+"values": [ 32, 33, 34 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Head:frame")
@@ -2732,7 +2732,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 37, 38, 39 ]
+"values": [ 32, 33, 34 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Arms:frame")
@@ -2744,7 +2744,7 @@ tracks/2/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 37, 38, 39 ]
+"values": [ 32, 33, 34 ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Bottom:frame")
@@ -2756,7 +2756,7 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 37, 38, 39 ]
+"values": [ 32, 33, 34 ]
 }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Top:frame")
@@ -2768,7 +2768,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 37, 38, 39 ]
+"values": [ 32, 33, 34 ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Eyes:frame")
@@ -2780,7 +2780,7 @@ tracks/5/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 37, 38, 39 ]
+"values": [ 32, 33, 34 ]
 }
 tracks/6/type = "value"
 tracks/6/path = NodePath("HairA:frame")
@@ -2792,7 +2792,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 37, 38, 39 ]
+"values": [ 32, 33, 34 ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("Face:frame")
@@ -2804,7 +2804,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 37, 38, 39 ]
+"values": [ 32, 33, 34 ]
 }
 tracks/8/type = "value"
 tracks/8/path = NodePath("HatA:frame")
@@ -2816,7 +2816,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 37, 38, 39 ]
+"values": [ 32, 33, 34 ]
 }
 tracks/9/type = "value"
 tracks/9/path = NodePath("HairB:frame")
@@ -2828,7 +2828,7 @@ tracks/9/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 37, 38, 39 ]
+"values": [ 32, 33, 34 ]
 }
 tracks/10/type = "value"
 tracks/10/path = NodePath("HatB:frame")
@@ -2840,7 +2840,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 37, 38, 39 ]
+"values": [ 32, 33, 34 ]
 }
 
 [node name="PlayerSprites" type="Node2D"]
@@ -2929,5 +2929,5 @@ anims/slide_left = SubResource( 38 )
 anims/slide_right = SubResource( 39 )
 "anims/wall_jump_left " = SubResource( 40 )
 anims/wall_jump_right = SubResource( 41 )
-anims/wall_slide_left = SubResource( 32 )
-anims/wall_slide_right = SubResource( 42 )
+anims/wall_slide_left = SubResource( 42 )
+anims/wall_slide_right = SubResource( 32 )
