@@ -2843,7 +2843,7 @@ tracks/10/keys = {
 "values": [ 37, 38, 39 ]
 }
 
-[node name="Body" type="Node2D"]
+[node name="PlayerSprites" type="Node2D"]
 
 [node name="HatB" type="Sprite" parent="."]
 texture = ExtResource( 8 )
