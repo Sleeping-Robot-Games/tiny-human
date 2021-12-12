@@ -41,23 +41,24 @@ func _ready():
 func connect_button_signals() -> void:
 	# warning-ignore-all:return_value_discarded
 	## Skin Color Buttons
-	$ColorContainer/SkinContainer/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['skin', -1])
-	$ColorContainer/SkinContainer/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['skin', 1])
+	#$Selectors/VBox/Skin/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['skin', -1])
+	#$Selectors/VBox/Skin/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['skin', 1])
 	## Eyes Color Buttons
-	$ColorContainer/EyesContainer/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['eyes', -1])
-	$ColorContainer/EyesContainer/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['eyes', 1])
+	$Selectors/VBox/Eyes/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['eyes', -1])
+	$Selectors/VBox/Eyes/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['eyes', 1])
 	## Hair A Color Buttons
-	$ColorContainer/HairAContainer/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', -1])
-	$ColorContainer/HairAContainer/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', 1])
+	$Selectors/VBox/HairA/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', -1])
+	$Selectors/VBox/HairA/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', 1])
 	## Hair B Color Buttons
-	$ColorContainer/HairBContainer/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', -1])
-	$ColorContainer/HairBContainer/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', 1])
+	$Selectors/VBox/HairB/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', -1])
+	$Selectors/VBox/HairB/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['hair', 1])
 	## Top Color Buttons
-	$ColorContainer/TopContainer/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['top', -1])
-	$ColorContainer/TopContainer/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['top', 1])
+	$Selectors/VBox/Top/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['top', -1])
+	$Selectors/VBox/Top/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['top', 1])
 	## Bottom Color Buttons
-	$ColorContainer/BottomContainer/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['bottom', -1])
-	$ColorContainer/BottomContainer/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['bottom', 1])
+	$Selectors/VBox/Bottom/Prev.connect('button_up', self, '_on_Color_Selection_button_up', ['bottom', -1])
+	$Selectors/VBox/Bottom/Next.connect('button_up', self, '_on_Color_Selection_button_up', ['bottom', 1])
+	pass
 
 
 func populate_color_boxes() -> void:
@@ -97,18 +98,18 @@ func create_palette_colors(palette_type: String) -> void:
 		
 		# Add button to scene
 		if palette_type == "skin":
-			$ColorBoxes/Skin/Boxes.add_child(button)
+			$Selectors/VBox/Skin/Colors.add_child(button)
 		elif palette_type == "eyes":
-			$ColorBoxes/Eyes/Boxes.add_child(button)
+			$Selectors/VBox/Eyes/Colors.add_child(button)
 		elif palette_type == "hair":
-			$ColorBoxes/HairA/Boxes.add_child(button)
+			$Selectors/VBox/HairA/Colors.add_child(button)
 			# TODO: fix HairB
 			var buttonB = button.duplicate()
-			$ColorBoxes/HairB/Boxes.add_child(buttonB)
+			$Selectors/VBox/HairB/Colors.add_child(buttonB)
 		elif palette_type == "top":
-			$ColorBoxes/Top/Boxes.add_child(button)
+			$Selectors/VBox/Top/Colors.add_child(button)
 		elif palette_type == "bottom":
-			$ColorBoxes/Bottom/Boxes.add_child(button)
+			$Selectors/VBox/Bottom/Colors.add_child(button)
 
 func create_random_character() -> void:
 	var palette_folders = files_in_dir(palette_folder_path)

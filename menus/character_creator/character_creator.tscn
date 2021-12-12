@@ -1,15 +1,13 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://menus/character_creator/flower.png" type="Texture" id=1]
 [ext_resource path="res://characters/player/player_sprites.tscn" type="PackedScene" id=2]
 [ext_resource path="res://menus/character_creator/character_creator.gd" type="Script" id=3]
 [ext_resource path="res://menus/character_creator/create_border.png" type="Texture" id=4]
 [ext_resource path="res://menus/character_creator/bg.png" type="Texture" id=5]
-[ext_resource path="res://menus/character_creator/box_bg/skin_colors.png" type="Texture" id=7]
-
-[sub_resource type="StreamTexture" id=1]
-resource_local_to_scene = true
-load_path = "res://.import/create_border.png-b0f369c7d96b8cc9a8d8b4e41f5f1f2f.stex"
+[ext_resource path="res://menus/character_creator/Dice.png" type="Texture" id=6]
+[ext_resource path="res://menus/character_creator/arrow_right.png" type="Texture" id=7]
+[ext_resource path="res://menus/character_creator/arrow_left.png" type="Texture" id=8]
 
 [node name="CharacterCreation" type="Control"]
 margin_right = 400.0
@@ -63,376 +61,516 @@ __meta__ = {
 position = Vector2( 85, 98 )
 scale = Vector2( 3, 3 )
 
-[node name="ColorContainer" type="VBoxContainer" parent="."]
-margin_left = 158.0
-margin_top = 16.0
-margin_right = 278.0
-margin_bottom = 186.0
-mouse_filter = 2
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SkinContainer" type="HBoxContainer" parent="ColorContainer"]
-margin_right = 120.0
-margin_bottom = 20.0
-mouse_filter = 2
-custom_constants/separation = 21
-alignment = 1
-
-[node name="Prev" type="Button" parent="ColorContainer/SkinContainer"]
-margin_left = 6.0
-margin_right = 26.0
-margin_bottom = 20.0
-text = "<"
-
-[node name="Label" type="Label" parent="ColorContainer/SkinContainer"]
-margin_left = 47.0
-margin_top = 3.0
-margin_right = 73.0
-margin_bottom = 17.0
-text = "Skin"
-
-[node name="Next" type="Button" parent="ColorContainer/SkinContainer"]
-margin_left = 94.0
-margin_right = 114.0
-margin_bottom = 20.0
-text = ">"
-
-[node name="EyesContainer" type="HBoxContainer" parent="ColorContainer"]
-margin_top = 30.0
-margin_right = 120.0
-margin_bottom = 50.0
-mouse_filter = 2
-custom_constants/separation = 19
-alignment = 1
-
-[node name="Prev" type="Button" parent="ColorContainer/EyesContainer"]
-margin_left = 6.0
-margin_right = 26.0
-margin_bottom = 20.0
-text = "<"
-
-[node name="Label" type="Label" parent="ColorContainer/EyesContainer"]
-margin_left = 45.0
-margin_top = 3.0
-margin_right = 74.0
-margin_bottom = 17.0
-text = "Eyes"
-
-[node name="Next" type="Button" parent="ColorContainer/EyesContainer"]
-margin_left = 93.0
-margin_right = 113.0
-margin_bottom = 20.0
-text = ">"
-
-[node name="HairAContainer" type="HBoxContainer" parent="ColorContainer"]
-margin_top = 60.0
-margin_right = 120.0
-margin_bottom = 80.0
-mouse_filter = 2
-custom_constants/separation = 14
-alignment = 1
-
-[node name="Prev" type="Button" parent="ColorContainer/HairAContainer"]
-margin_left = 6.0
-margin_right = 26.0
-margin_bottom = 20.0
-text = "<"
-
-[node name="Label" type="Label" parent="ColorContainer/HairAContainer"]
-margin_left = 40.0
-margin_top = 3.0
-margin_right = 79.0
-margin_bottom = 17.0
-text = "Hair A"
-
-[node name="Next" type="Button" parent="ColorContainer/HairAContainer"]
-margin_left = 93.0
-margin_right = 113.0
-margin_bottom = 20.0
-text = ">"
-
-[node name="HairBContainer" type="HBoxContainer" parent="ColorContainer"]
-margin_top = 90.0
-margin_right = 120.0
-margin_bottom = 110.0
-mouse_filter = 2
-custom_constants/separation = 14
-alignment = 1
-
-[node name="Prev" type="Button" parent="ColorContainer/HairBContainer"]
-margin_left = 6.0
-margin_right = 26.0
-margin_bottom = 20.0
-text = "<"
-
-[node name="Label" type="Label" parent="ColorContainer/HairBContainer"]
-margin_left = 40.0
-margin_top = 3.0
-margin_right = 79.0
-margin_bottom = 17.0
-text = "Hair B"
-
-[node name="Next" type="Button" parent="ColorContainer/HairBContainer"]
-margin_left = 93.0
-margin_right = 113.0
-margin_bottom = 20.0
-text = ">"
-
-[node name="TopContainer" type="HBoxContainer" parent="ColorContainer"]
-margin_top = 120.0
-margin_right = 120.0
-margin_bottom = 140.0
-mouse_filter = 2
-custom_constants/separation = 22
-alignment = 1
-
-[node name="Prev" type="Button" parent="ColorContainer/TopContainer"]
-margin_left = 6.0
-margin_right = 26.0
-margin_bottom = 20.0
-text = "<"
-
-[node name="Label" type="Label" parent="ColorContainer/TopContainer"]
-margin_left = 48.0
-margin_top = 3.0
-margin_right = 71.0
-margin_bottom = 17.0
-text = "Top"
-
-[node name="Next" type="Button" parent="ColorContainer/TopContainer"]
-margin_left = 93.0
-margin_right = 113.0
-margin_bottom = 20.0
-text = ">"
-
-[node name="BottomContainer" type="HBoxContainer" parent="ColorContainer"]
-margin_top = 150.0
-margin_right = 120.0
-margin_bottom = 170.0
-mouse_filter = 2
-custom_constants/separation = 9
-alignment = 1
-
-[node name="Prev" type="Button" parent="ColorContainer/BottomContainer"]
-margin_left = 7.0
-margin_right = 27.0
-margin_bottom = 20.0
-text = "<"
-
-[node name="Label" type="Label" parent="ColorContainer/BottomContainer"]
-margin_left = 36.0
-margin_top = 3.0
-margin_right = 84.0
-margin_bottom = 17.0
-text = "Bottom"
-
-[node name="Next" type="Button" parent="ColorContainer/BottomContainer"]
-margin_left = 93.0
-margin_right = 113.0
-margin_bottom = 20.0
-text = ">"
-
-[node name="ColorBoxes" type="VBoxContainer" parent="."]
-margin_left = 283.0
-margin_top = 16.0
-margin_right = 383.0
-margin_bottom = 186.0
-mouse_filter = 2
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Skin" type="NinePatchRect" parent="ColorBoxes"]
-margin_right = 100.0
-margin_bottom = 20.0
-rect_min_size = Vector2( 100, 20 )
+[node name="Selectors" type="NinePatchRect" parent="."]
+margin_left = 163.0
+margin_top = 40.0
+margin_right = 363.0
+margin_bottom = 204.0
 texture = ExtResource( 4 )
 patch_margin_left = 3
 patch_margin_top = 3
 patch_margin_right = 3
 patch_margin_bottom = 3
-
-[node name="Boxes" type="GridContainer" parent="ColorBoxes/Skin"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 95.0
-margin_bottom = 15.0
-mouse_filter = 2
-columns = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="TextureRect" parent="ColorBoxes/Skin"]
+[node name="VBox" type="VBoxContainer" parent="Selectors"]
 show_behind_parent = true
-margin_right = 100.0
-margin_bottom = 20.0
-mouse_filter = 2
-texture = ExtResource( 7 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 2.0
+margin_right = -2.0
+margin_bottom = -2.0
+rect_min_size = Vector2( 196, 0 )
+custom_constants/separation = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Eyes" type="NinePatchRect" parent="ColorBoxes"]
-margin_top = 30.0
-margin_right = 100.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 100, 20 )
-texture = SubResource( 1 )
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+[node name="Skin" type="ColorRect" parent="Selectors/VBox"]
+margin_right = 196.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 196, 20 )
+color = Color( 0.137255, 0.14902, 0.403922, 1 )
 
-[node name="Boxes" type="GridContainer" parent="ColorBoxes/Eyes"]
-margin_left = 5.0
+[node name="HBox" type="HBoxContainer" parent="Selectors/VBox/Skin"]
+margin_right = 98.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 98, 20 )
+mouse_filter = 2
+custom_constants/separation = 21
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Selectors/VBox/Skin/HBox"]
+margin_left = 36.0
+margin_top = 3.0
+margin_right = 62.0
+margin_bottom = 17.0
+text = "Skin"
+
+[node name="Colors" type="GridContainer" parent="Selectors/VBox/Skin"]
+margin_left = 106.0
+margin_top = 4.0
+margin_right = 188.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 82, 12 )
+mouse_filter = 2
+custom_constants/vseparation = 2
+custom_constants/hseparation = 2
+columns = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Eyes" type="ColorRect" parent="Selectors/VBox"]
+margin_top = 20.0
+margin_right = 196.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 196, 20 )
+color = Color( 0.196078, 0.207843, 0.517647, 1 )
+
+[node name="HBox" type="HBoxContainer" parent="Selectors/VBox/Eyes"]
+margin_right = 98.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 98, 20 )
+mouse_filter = 2
+custom_constants/separation = 21
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Selectors/VBox/Eyes/HBox"]
+margin_left = 34.0
+margin_top = 3.0
+margin_right = 63.0
+margin_bottom = 17.0
+text = "Eyes"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Prev" type="TextureButton" parent="Selectors/VBox/Eyes"]
+margin_left = 4.0
 margin_top = 5.0
-margin_right = 95.0
+margin_right = 16.0
 margin_bottom = 15.0
-mouse_filter = 2
-columns = 10
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="TextureRect" parent="ColorBoxes/Eyes"]
-show_behind_parent = true
-margin_right = 100.0
+[node name="Next" type="TextureButton" parent="Selectors/VBox/Eyes"]
+margin_left = 81.0
+margin_top = 5.0
+margin_right = 93.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Colors" type="GridContainer" parent="Selectors/VBox/Eyes"]
+margin_left = 106.0
+margin_top = 4.0
+margin_right = 188.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 82, 12 )
+mouse_filter = 2
+custom_constants/vseparation = 2
+custom_constants/hseparation = 2
+columns = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HairA" type="ColorRect" parent="Selectors/VBox"]
+margin_top = 40.0
+margin_right = 196.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 196, 20 )
+color = Color( 0.227451, 0.254902, 0.572549, 1 )
+
+[node name="HBox" type="HBoxContainer" parent="Selectors/VBox/HairA"]
+margin_right = 98.0
 margin_bottom = 20.0
+rect_min_size = Vector2( 98, 20 )
 mouse_filter = 2
-texture = ExtResource( 7 )
+custom_constants/separation = 21
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HairA" type="NinePatchRect" parent="ColorBoxes"]
+[node name="Label" type="Label" parent="Selectors/VBox/HairA/HBox"]
+margin_left = 29.0
+margin_top = 3.0
+margin_right = 68.0
+margin_bottom = 17.0
+text = "Hair A"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Prev" type="TextureButton" parent="Selectors/VBox/HairA"]
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 16.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="TextureButton" parent="Selectors/VBox/HairA"]
+margin_left = 81.0
+margin_top = 5.0
+margin_right = 93.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Colors" type="GridContainer" parent="Selectors/VBox/HairA"]
+margin_left = 106.0
+margin_top = 4.0
+margin_right = 188.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 82, 12 )
+mouse_filter = 2
+custom_constants/vseparation = 2
+custom_constants/hseparation = 2
+columns = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HairB" type="ColorRect" parent="Selectors/VBox"]
 margin_top = 60.0
-margin_right = 100.0
+margin_right = 196.0
 margin_bottom = 80.0
-rect_min_size = Vector2( 100, 20 )
-texture = SubResource( 1 )
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+rect_min_size = Vector2( 196, 20 )
+color = Color( 0.270588, 0.301961, 0.607843, 1 )
 
-[node name="Boxes" type="GridContainer" parent="ColorBoxes/HairA"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 95.0
-margin_bottom = 15.0
-mouse_filter = 2
-columns = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Background" type="TextureRect" parent="ColorBoxes/HairA"]
-show_behind_parent = true
-margin_right = 100.0
+[node name="HBox" type="HBoxContainer" parent="Selectors/VBox/HairB"]
+margin_right = 98.0
 margin_bottom = 20.0
+rect_min_size = Vector2( 98, 20 )
 mouse_filter = 2
-texture = ExtResource( 7 )
+custom_constants/separation = 21
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HairB" type="NinePatchRect" parent="ColorBoxes"]
-margin_top = 90.0
-margin_right = 100.0
-margin_bottom = 110.0
-rect_min_size = Vector2( 100, 20 )
-texture = SubResource( 1 )
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+[node name="Label" type="Label" parent="Selectors/VBox/HairB/HBox"]
+margin_left = 29.0
+margin_top = 3.0
+margin_right = 68.0
+margin_bottom = 17.0
+text = "Hair B"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Boxes" type="GridContainer" parent="ColorBoxes/HairB"]
-margin_left = 5.0
+[node name="Prev" type="TextureButton" parent="Selectors/VBox/HairB"]
+margin_left = 4.0
 margin_top = 5.0
-margin_right = 95.0
+margin_right = 16.0
 margin_bottom = 15.0
-mouse_filter = 2
-columns = 10
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="TextureRect" parent="ColorBoxes/HairB"]
-show_behind_parent = true
-margin_right = 100.0
+[node name="Next" type="TextureButton" parent="Selectors/VBox/HairB"]
+margin_left = 81.0
+margin_top = 5.0
+margin_right = 93.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Colors" type="GridContainer" parent="Selectors/VBox/HairB"]
+margin_left = 106.0
+margin_top = 4.0
+margin_right = 188.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 82, 12 )
+mouse_filter = 2
+custom_constants/vseparation = 2
+custom_constants/hseparation = 2
+columns = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Top" type="ColorRect" parent="Selectors/VBox"]
+margin_top = 80.0
+margin_right = 196.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 196, 20 )
+color = Color( 0.317647, 0.356863, 0.662745, 1 )
+
+[node name="HBox" type="HBoxContainer" parent="Selectors/VBox/Top"]
+margin_right = 98.0
 margin_bottom = 20.0
+rect_min_size = Vector2( 98, 20 )
 mouse_filter = 2
-texture = ExtResource( 7 )
+custom_constants/separation = 21
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Top" type="NinePatchRect" parent="ColorBoxes"]
+[node name="Label" type="Label" parent="Selectors/VBox/Top/HBox"]
+margin_left = 37.0
+margin_top = 3.0
+margin_right = 60.0
+margin_bottom = 17.0
+text = "Top"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Prev" type="TextureButton" parent="Selectors/VBox/Top"]
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 16.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="TextureButton" parent="Selectors/VBox/Top"]
+margin_left = 81.0
+margin_top = 5.0
+margin_right = 93.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Colors" type="GridContainer" parent="Selectors/VBox/Top"]
+margin_left = 106.0
+margin_top = 4.0
+margin_right = 188.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 82, 12 )
+mouse_filter = 2
+custom_constants/vseparation = 2
+custom_constants/hseparation = 2
+columns = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bottom" type="ColorRect" parent="Selectors/VBox"]
+margin_top = 100.0
+margin_right = 196.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 196, 20 )
+color = Color( 0.364706, 0.415686, 0.705882, 1 )
+
+[node name="HBox" type="HBoxContainer" parent="Selectors/VBox/Bottom"]
+margin_right = 98.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 98, 20 )
+mouse_filter = 2
+custom_constants/separation = 21
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Selectors/VBox/Bottom/HBox"]
+margin_left = 25.0
+margin_top = 3.0
+margin_right = 73.0
+margin_bottom = 17.0
+text = "Bottom"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Prev" type="TextureButton" parent="Selectors/VBox/Bottom"]
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 16.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="TextureButton" parent="Selectors/VBox/Bottom"]
+margin_left = 81.0
+margin_top = 5.0
+margin_right = 93.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Colors" type="GridContainer" parent="Selectors/VBox/Bottom"]
+margin_left = 106.0
+margin_top = 4.0
+margin_right = 188.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 82, 12 )
+mouse_filter = 2
+custom_constants/vseparation = 2
+custom_constants/hseparation = 2
+columns = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Hat" type="ColorRect" parent="Selectors/VBox"]
 margin_top = 120.0
-margin_right = 100.0
+margin_right = 196.0
 margin_bottom = 140.0
-rect_min_size = Vector2( 100, 20 )
-texture = SubResource( 1 )
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+rect_min_size = Vector2( 196, 20 )
+color = Color( 0.439216, 0.501961, 0.768627, 1 )
 
-[node name="Boxes" type="GridContainer" parent="ColorBoxes/Top"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 95.0
-margin_bottom = 15.0
-mouse_filter = 2
-columns = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Background" type="TextureRect" parent="ColorBoxes/Top"]
-show_behind_parent = true
-margin_right = 100.0
+[node name="HBox" type="HBoxContainer" parent="Selectors/VBox/Hat"]
+margin_right = 98.0
 margin_bottom = 20.0
+rect_min_size = Vector2( 98, 20 )
 mouse_filter = 2
-texture = ExtResource( 7 )
+custom_constants/separation = 21
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bottom" type="NinePatchRect" parent="ColorBoxes"]
-margin_top = 150.0
-margin_right = 100.0
-margin_bottom = 170.0
-rect_min_size = Vector2( 100, 20 )
-texture = SubResource( 1 )
-patch_margin_left = 3
-patch_margin_top = 3
-patch_margin_right = 3
-patch_margin_bottom = 3
+[node name="Label" type="Label" parent="Selectors/VBox/Hat/HBox"]
+margin_left = 38.0
+margin_top = 3.0
+margin_right = 60.0
+margin_bottom = 17.0
+text = "Hat"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Boxes" type="GridContainer" parent="ColorBoxes/Bottom"]
-margin_left = 5.0
+[node name="Prev" type="TextureButton" parent="Selectors/VBox/Hat"]
+margin_left = 4.0
 margin_top = 5.0
-margin_right = 95.0
+margin_right = 16.0
 margin_bottom = 15.0
-mouse_filter = 2
-columns = 10
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="TextureRect" parent="ColorBoxes/Bottom"]
-show_behind_parent = true
-margin_right = 100.0
-margin_bottom = 20.0
+[node name="Next" type="TextureButton" parent="Selectors/VBox/Hat"]
+margin_left = 81.0
+margin_top = 5.0
+margin_right = 93.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Colors" type="GridContainer" parent="Selectors/VBox/Hat"]
+margin_left = 106.0
+margin_top = 4.0
+margin_right = 188.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 82, 12 )
 mouse_filter = 2
-texture = ExtResource( 7 )
+custom_constants/vseparation = 2
+custom_constants/hseparation = 2
+columns = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Acc" type="ColorRect" parent="Selectors/VBox"]
+margin_top = 140.0
+margin_right = 196.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 196, 20 )
+color = Color( 0.513726, 0.576471, 0.847059, 1 )
+
+[node name="HBox" type="HBoxContainer" parent="Selectors/VBox/Acc"]
+margin_right = 98.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 98, 20 )
+mouse_filter = 2
+custom_constants/separation = 21
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Selectors/VBox/Acc/HBox"]
+margin_left = 35.0
+margin_top = 3.0
+margin_right = 62.0
+margin_bottom = 17.0
+text = "Acc."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Prev" type="TextureButton" parent="Selectors/VBox/Acc"]
+margin_left = 4.0
+margin_top = 5.0
+margin_right = 16.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Next" type="TextureButton" parent="Selectors/VBox/Acc"]
+margin_left = 81.0
+margin_top = 5.0
+margin_right = 93.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 12, 10 )
+texture_normal = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Colors" type="GridContainer" parent="Selectors/VBox/Acc"]
+margin_left = 106.0
+margin_top = 4.0
+margin_right = 188.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 82, 12 )
+mouse_filter = 2
+custom_constants/vseparation = 2
+custom_constants/hseparation = 2
+columns = 12
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -467,12 +605,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Randomize" type="Button" parent="."]
-margin_left = 192.0
-margin_top = 210.0
-margin_right = 275.0
-margin_bottom = 230.0
-text = "Randomize"
+[node name="Randomize" type="TextureButton" parent="."]
+margin_left = 201.0
+margin_top = 211.0
+margin_right = 217.0
+margin_bottom = 227.0
+texture_normal = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
