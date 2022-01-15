@@ -2,7 +2,15 @@ extends Node2D
 
 var is_idle = true
 var follow_speed = 10 # smaller is faster
+#var cursor = load("res://characters/wisp/cursor.png")
 onready var prev_mouse_pos = get_viewport().get_mouse_position()
+
+func _ready():
+	# hide mouse cursor?
+	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	# replace mouse cursor?
+	#Input.set_custom_mouse_cursor(cursor)
+	pass
 
 # offset adjustment needed?
 # see: https://godotengine.org/qa/11538/get-mouse-position-in-world
