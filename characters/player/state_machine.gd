@@ -14,6 +14,8 @@ func _ready():
 	add_state("double_jump")
 	add_state("fall")
 	add_state("wall_slide")
+	add_state("push")
+	add_state("pull")
 	call_deferred("set_state", states.idle)
 
 func _physics_process(delta):
@@ -35,7 +37,7 @@ func add_state(state_name):
 	states[state_name] = states.size()
 
 func _input(event):
-	if state == states.idle and parent.interact_object:
+	if state == states.idle  and parent.interact_object or state == states.push or state == states.pull:
 		if event.is_action_pressed("interact"):
 			parent.interact_object.action() # passes the interact logic to item
 	if state == states.idle or state == states.run:
@@ -75,6 +77,15 @@ func _get_transition(delta):
 					return states.jump
 				else:
 					return states.fall
+			elif parent.interact_object is MovableBox and parent.interact_object.held:
+				if parent.facing < 0 and parent.box_on_left:
+					return states.push
+				elif parent.facing < 0 and not parent.box_on_left:
+					return states.pull
+				elif parent.facing > 0 and parent.box_on_left:
+					return states.pull
+				elif parent.facing > 0 and not parent.box_on_left:
+					return states.push
 			elif parent.velocity.x != 0:
 				return states.run
 		states.run:
@@ -119,6 +130,16 @@ func _get_transition(delta):
 				return states.idle
 			elif parent.wall_direction == 0:
 				return states.fall
+		states.push:
+			if not parent.interact_object or not 'held' in parent.interact_object or not parent.interact_object.held:
+				return states.idle
+			elif (parent.facing < 0 and not parent.box_on_left) or (parent.facing > 0 and parent.box_on_left):
+				return states.pull
+		states.pull:
+			if not parent.interact_object or not 'held' in parent.interact_object or not parent.interact_object.held:
+				return states.idle
+			elif (parent.facing < 0 and parent.box_on_left) or (parent.facing > 0 and not parent.box_on_left):
+				return states.push
 	return null
 
 func _enter_state(new_state, old_state):
@@ -140,6 +161,10 @@ func _enter_state(new_state, old_state):
 			parent.anim_player.play("fall" + direction)
 		states.wall_slide:
 			parent.anim_player.play("wall_slide" + direction)
+		states.push:
+			parent.anim_player.play("push" + direction)
+		states.pull:
+			parent.anim_player.play("pull" + direction)
 
 func _exit_state(old_state, new_state):
 	match old_state:

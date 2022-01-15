@@ -22,6 +22,7 @@ var is_sliding = false
 var can_double_jump = false
 var level_complete = false
 var interact_object = null
+var box_on_left
 
 export (int, 0, 200) var push = 8
 
@@ -47,11 +48,6 @@ func _apply_movement(delta):
 	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP, false, 4, 
 	PI/4, false).round()
 	
-	#for i in get_slide_count():
-	#	var collision = get_slide_collision(i)
-	#	if collision.collider is MovableBox: ## TODO: Maybe use groups here 
-	#		collision.collider.apply_central_impulse(-collision.normal * push)
-
 	var was_grounded = is_grounded
 	is_grounded = _check_is_grounded()
 	
