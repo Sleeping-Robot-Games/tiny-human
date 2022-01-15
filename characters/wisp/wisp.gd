@@ -26,8 +26,10 @@ func _physics_process(delta):
 	
 	# move towards player if mouse is idle, otherwise move towards mouse
 	if is_idle:
-		var player_pos = get_parent().global_position
-		var idle_pos = Vector2(player_pos.x - 20, player_pos.y + 5)
+		var player_node = get_parent()
+		var player_pos = player_node.global_position
+		var behind_player = 20 if player_node.facing < 0 else -20
+		var idle_pos = Vector2(player_pos.x + behind_player, player_pos.y + 5)
 		global_position += (idle_pos - global_position) / follow_speed
 	else:
 		global_position += (get_global_mouse_position() - global_position) / follow_speed
