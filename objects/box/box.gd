@@ -5,7 +5,6 @@ var player
 var held = false
 var infront_player
 
-
 func _physics_process(delta):
 	if held:
 		var player_pos = player.global_position
@@ -14,25 +13,28 @@ func _physics_process(delta):
 
 func _on_GrabArea_body_entered(body):
 	if body.name == 'Player':
-		print('enter')
 		player = body
 		body.interact_object = self
 
 func _on_GrabArea_body_exited(body):
 	if body.name == 'Player':
-		print('exit')
-		#player = null
+		if held:
+			let_go()
 		body.interact_object = null
-		# mode = RigidBody2D.MODE_RIGID
 
 func action():
-	held = !held
 	if held:
-		print('holding')
-		mode = RigidBody2D.MODE_STATIC
-		infront_player = -35 if player.facing < 0 else 35
-		player.move_speed = player.move_speed / 2
+		let_go()
 	else:
-		print('let go')
-		mode = RigidBody2D.MODE_RIGID
-		player.move_speed = player.move_speed * 2
+		grab()
+		
+func grab():
+	held = true
+	infront_player = -30 if player.facing < 0 else 30
+	player.move_speed = player.move_speed / 2
+	
+func let_go():
+	held = false
+	player.move_speed = player.move_speed * 2
+	
+	
