@@ -21,8 +21,6 @@ func _ready():
 	call_deferred("set_state", states.idle)
 
 func _physics_process(delta):
-	
-	print(parent.velocity.x)
 	if state != null:
 		_state_logic(delta)
 		var transition = _get_transition(delta)
@@ -135,8 +133,6 @@ func _get_transition(delta):
 			elif parent.wall_direction == 0:
 				return states.fall
 		states.push:
-			print('push')
-			print(parent.velocity.x)
 			if not parent.interact_object or not 'held' in parent.interact_object or not parent.interact_object.held:
 				return states.idle
 			elif parent.velocity.x == 0: 
