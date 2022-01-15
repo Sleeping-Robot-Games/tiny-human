@@ -35,7 +35,7 @@ func grab():
 	# find if box is on left or right
 	player.box_on_left = global_position.x < player.global_position.x
 	# then use the new facing direction to get infront_player var
-	infront_player = -30 if player.box_on_left else 30
+	infront_player = -25 if player.box_on_left else 25
 	player.move_speed = player.move_speed / 2
 	
 func let_go():
