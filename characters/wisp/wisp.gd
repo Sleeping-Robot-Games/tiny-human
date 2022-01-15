@@ -26,12 +26,14 @@ func _physics_process(delta):
 	
 	# move towards player if mouse is idle, otherwise move towards mouse
 	if is_idle:
+		modulate.a = 0.25
 		var player_node = get_parent()
 		var player_pos = player_node.global_position
 		var behind_player = 20 if player_node.facing < 0 else -20
 		var idle_pos = Vector2(player_pos.x + behind_player, player_pos.y + 5)
 		global_position += (idle_pos - global_position) / follow_speed
 	else:
+		modulate.a = 0.5
 		global_position += (get_global_mouse_position() - global_position) / follow_speed
 	
 	# setup current mouse position as next frame's previous mouse position
