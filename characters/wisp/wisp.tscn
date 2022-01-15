@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://characters/wisp/floaty_64.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 7
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=2]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, -100, 0 )
+initial_velocity = 25.0
+angular_velocity = 100.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+scale = 2.0
+color = Color( 0.121569, 0.988235, 0.937255, 1 )
+
+[node name="Wisp" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="Particles2D" type="Particles2D" parent="Sprite"]
+material = SubResource( 1 )
+scale = Vector2( 0.5, 0.5 )
+amount = 60
+process_material = SubResource( 2 )
+texture = ExtResource( 2 )

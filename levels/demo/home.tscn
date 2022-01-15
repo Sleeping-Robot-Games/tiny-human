@@ -2,7 +2,7 @@
 
 [ext_resource path="res://levels/demo/home_test.tres" type="TileSet" id=1]
 [ext_resource path="res://characters/player/player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://characters/wisp/sprite.png" type="Texture" id=3]
+[ext_resource path="res://characters/wisp/wisp.tscn" type="PackedScene" id=3]
 
 [node name="Demo" type="Node"]
 
@@ -15,7 +15,6 @@ tile_data = PoolIntArray( -786411, 0, 15, -786410, 0, 524299, -786409, 0, 393230
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( -420, 672 )
 
-[node name="Sprite" type="Sprite" parent="Player"]
-position = Vector2( -19, 5 )
+[node name="Wisp" parent="Player" instance=ExtResource( 3 )]
+position = Vector2( -20, 5 )
 scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 3 )
