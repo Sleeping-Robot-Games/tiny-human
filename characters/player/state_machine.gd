@@ -37,7 +37,6 @@ func add_state(state_name):
 func _input(event):
 	if state == states.idle and parent.interact_object:
 		if event.is_action_pressed("interact"):
-			print(parent.interact_object.name)
 			parent.interact_object.action()
 	if state == states.idle or state == states.run:
 		if event.is_action_pressed("jump"):
