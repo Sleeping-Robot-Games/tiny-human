@@ -21,6 +21,7 @@ var is_grounded = false
 var is_sliding = false
 var can_double_jump = false
 var level_complete = false
+var interact_object = null
 
 export (int, 0, 200) var push = 8
 
