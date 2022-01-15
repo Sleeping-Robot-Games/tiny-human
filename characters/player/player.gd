@@ -22,6 +22,8 @@ var is_sliding = false
 var can_double_jump = false
 var level_complete = false
 
+export (int, 0, 200) var push = 8
+
 onready var anim_player = $Body/AnimationPlayer
 onready var left_wall_raycast = $LeftWallRaycast
 onready var right_wall_raycast = $RightWallRaycast
@@ -41,7 +43,13 @@ func _cap_gravity_wall_slide():
 
 func _apply_movement(delta):
 	var snap = Vector2.DOWN if !is_jumping else Vector2.ZERO
-	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP)
+	velocity = move_and_slide_with_snap(velocity, snap, Vector2.UP, false, 4, 
+	PI/4, false)
+	
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider is MovableBox: ## TODO: Maybe use groups here 
+			collision.collider.apply_central_impulse(-collision.normal * 2)
 
 	var was_grounded = is_grounded
 	is_grounded = _check_is_grounded()
