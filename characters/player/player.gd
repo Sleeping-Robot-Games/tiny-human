@@ -49,7 +49,7 @@ func _apply_movement(delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider is MovableBox: ## TODO: Maybe use groups here 
-			collision.collider.apply_central_impulse(-collision.normal * 2)
+			collision.collider.apply_central_impulse(-collision.normal * push)
 
 	var was_grounded = is_grounded
 	is_grounded = _check_is_grounded()
