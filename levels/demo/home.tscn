@@ -20,4 +20,4 @@ push = 10
 [node name="Wisp" parent="Player" instance=ExtResource( 3 )]
 
 [node name="Box" parent="." instance=ExtResource( 4 )]
-position = Vector2( -233, 688 )
+position = Vector2( -95, 685 )

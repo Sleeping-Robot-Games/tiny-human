@@ -24,7 +24,6 @@ func _on_GrabArea_body_exited(body):
 		body.interact_object = null
 
 func action():
-	print(held)
 	if held:
 		let_go()
 	else:

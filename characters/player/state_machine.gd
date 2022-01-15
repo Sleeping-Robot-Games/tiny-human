@@ -15,10 +15,14 @@ func _ready():
 	add_state("fall")
 	add_state("wall_slide")
 	add_state("push")
+	add_state("idle_push")
 	add_state("pull")
+	add_state("idle_pull")
 	call_deferred("set_state", states.idle)
 
 func _physics_process(delta):
+	
+	print(parent.velocity.x)
 	if state != null:
 		_state_logic(delta)
 		var transition = _get_transition(delta)
@@ -37,7 +41,7 @@ func add_state(state_name):
 	states[state_name] = states.size()
 
 func _input(event):
-	if state == states.idle  and parent.interact_object or state == states.push or state == states.pull:
+	if state == states.idle  and parent.interact_object or state == states.push or state == states.idle_push or state == states.pull or state == states.idle_pull:
 		if event.is_action_pressed("interact"):
 			parent.interact_object.action() # passes the interact logic to item
 	if state == states.idle or state == states.run:
@@ -79,13 +83,13 @@ func _get_transition(delta):
 					return states.fall
 			elif parent.interact_object is MovableBox and parent.interact_object.held:
 				if parent.facing < 0 and parent.box_on_left:
-					return states.push
+					return states.idle_push
 				elif parent.facing < 0 and not parent.box_on_left:
-					return states.pull
+					return states.idle_pull
 				elif parent.facing > 0 and parent.box_on_left:
-					return states.pull
+					return states.idle_pull
 				elif parent.facing > 0 and not parent.box_on_left:
-					return states.push
+					return states.idle_push
 			elif parent.velocity.x != 0:
 				return states.run
 		states.run:
@@ -131,15 +135,37 @@ func _get_transition(delta):
 			elif parent.wall_direction == 0:
 				return states.fall
 		states.push:
+			print('push')
+			print(parent.velocity.x)
 			if not parent.interact_object or not 'held' in parent.interact_object or not parent.interact_object.held:
 				return states.idle
+			elif parent.velocity.x == 0: 
+				return states.idle_push
 			elif (parent.facing < 0 and not parent.box_on_left) or (parent.facing > 0 and parent.box_on_left):
 				return states.pull
+		states.idle_push:
+			if not parent.interact_object or not 'held' in parent.interact_object or not parent.interact_object.held:
+				return states.idle
+			elif parent.velocity.x != 0:
+				if (parent.facing < 0 and not parent.box_on_left) or (parent.facing > 0 and parent.box_on_left):
+					return states.pull
+				elif (parent.facing < 0 and parent.box_on_left) or (parent.facing > 0 and not parent.box_on_left):
+					return states.push
 		states.pull:
 			if not parent.interact_object or not 'held' in parent.interact_object or not parent.interact_object.held:
 				return states.idle
+			elif parent.velocity.x == 0:
+				return states.idle_pull
 			elif (parent.facing < 0 and parent.box_on_left) or (parent.facing > 0 and not parent.box_on_left):
 				return states.push
+		states.idle_pull:
+			if not parent.interact_object or not 'held' in parent.interact_object or not parent.interact_object.held:
+				return states.idle
+			elif parent.velocity.x != 0:
+				if (parent.facing < 0 and not parent.box_on_left) or (parent.facing > 0 and parent.box_on_left):
+					return states.pull
+				elif (parent.facing < 0 and parent.box_on_left) or (parent.facing > 0 and not parent.box_on_left):
+					return states.push
 	return null
 
 func _enter_state(new_state, old_state):
@@ -163,8 +189,12 @@ func _enter_state(new_state, old_state):
 			parent.anim_player.play("wall_slide" + direction)
 		states.push:
 			parent.anim_player.play("push" + direction)
+		states.idle_push:
+			parent.anim_player.play("push_idle" + direction)
 		states.pull:
 			parent.anim_player.play("pull" + direction)
+		states.idle_pull:
+			parent.anim_player.play("pull_idle" + direction)
 
 func _exit_state(old_state, new_state):
 	match old_state:
