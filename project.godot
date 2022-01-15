@@ -11,15 +11,13 @@ config_version=4
 [application]
 
 config/name="Tiny Human"
-run/main_scene="res://levels/home/home.tscn"
+run/main_scene="res://levels/demo/home.tscn"
 config/icon="res://icon.png"
 
 [display]
 
-window/size/width=400
-window/size/height=240
-window/size/test_width=800
-window/size/test_height=480
+window/size/width=960
+window/size/height=540
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
@@ -61,4 +59,5 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+2d/snapping/use_gpu_pixel_snap=true
 environment/default_environment="res://default_env.tres"

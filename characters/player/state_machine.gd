@@ -133,7 +133,7 @@ func _enter_state(new_state, old_state):
 			parent.anim_player.play("jump" + direction)
 		states.double_jump:
 			parent.anim_player.play("jump" + direction)
-		states.fall:
+		states.fall: ## TODO: Animations not found
 			parent.anim_player.play("fall" + direction)
 		states.wall_slide:
 			parent.anim_player.play("wall_slide" + direction)
