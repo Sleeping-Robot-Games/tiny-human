@@ -1,9 +1,31 @@
 extends Node2D
 
-var follow_speed = 5 # smaller is faster
+var is_idle = true
+var follow_speed = 10 # smaller is faster
+onready var prev_mouse_pos = get_viewport().get_mouse_position()
 
+# offset adjustment needed?
+# see: https://godotengine.org/qa/11538/get-mouse-position-in-world
 func _physics_process(delta):
-	position += (get_global_mouse_position() - position) / follow_speed
-	# offset needed?
-	# see: https://godotengine.org/qa/11538/get-mouse-position-in-world
-	#offset = get_local_mouse_position()
+	var mouse_pos = get_viewport().get_mouse_position()
+	
+	# determine if mouse is idle or not
+	if mouse_pos != prev_mouse_pos:
+		is_idle = false
+		$IdleMouseTimer.stop()
+	elif $IdleMouseTimer.time_left == 0:
+		$IdleMouseTimer.start()
+	
+	# move towards player if mouse is idle, otherwise move towards mouse
+	if is_idle:
+		var player_pos = get_parent().global_position
+		var idle_pos = Vector2(player_pos.x - 20, player_pos.y + 5)
+		global_position += (idle_pos - global_position) / follow_speed
+	else:
+		global_position += (get_global_mouse_position() - global_position) / follow_speed
+	
+	# setup current mouse position as next frame's previous mouse position
+	prev_mouse_pos = mouse_pos
+
+func _on_IdleMouseTimer_timeout():
+	is_idle = true
